@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGlobalState } from "host-app/GlobalContext";
 import { validateForm } from "../utils/validation";
 import Link from "host-app/Link";
@@ -24,8 +24,11 @@ export default function Login({ className }: Readonly<{ className?: string }>) {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (errors.username || errors.password) return;
-    const user = users.find((user: any) => {
-      return user.name === form.username;
+    const user = users.find((user: unknown) => {
+      return (
+        (user as { name: string }).name === form.username &&
+        (user as { password: string }).password === form.password
+      );
     });
     if (user === undefined) {
       setErrors({

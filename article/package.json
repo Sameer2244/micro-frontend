@@ -1,5 +1,5 @@
 {
-  "name": "host-app",
+  "name": "article",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,15 +7,12 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview --port 4173"
+    "preview": "vite preview --port 4175"
   },
   "dependencies": {
     "@originjs/vite-plugin-federation": "^1.4.1",
-    "@tailwindcss/vite": "^4.1.11",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.3",
-    "tailwindcss": "^4.1.11"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",

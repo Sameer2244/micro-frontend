@@ -107,6 +107,7 @@ export default function GlobalContextWrapper({
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useGlobalState = () => {
   const state = useContext(GlobalContext);
   if (!state) {

@@ -10,6 +10,8 @@ const Register = lazy(() => {
   return import("admin/Register");
 });
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ErrorBoundary from "./components/ErrorBoundary.tsx";
+import ArticleForm from "article/ArticleForm";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -20,17 +22,31 @@ createRoot(document.getElementById("root")!).render(
           <Route
             path="/login"
             element={
-              <Suspense fallback={<h1>Loading...</h1>}>
-                <Login className="flex flex-col border my-5 gap-5" />
-              </Suspense>
+              <ErrorBoundary>
+                <Suspense fallback={<h1>Loading...</h1>}>
+                  <Login className="flex flex-col border my-5 gap-5" />
+                </Suspense>
+              </ErrorBoundary>
             }
           />
           <Route
             path="/register"
             element={
-              <Suspense fallback={<h1>Loading...</h1>}>
-                <Register className="flex flex-col border my-5 gap-5" />
-              </Suspense>
+              <ErrorBoundary>
+                <Suspense fallback={<h1>Loading...</h1>}>
+                  <Register className="flex flex-col border my-5 gap-5" />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/add-article"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<h1>Loading...</h1>}>
+                  <ArticleForm />
+                </Suspense>
+              </ErrorBoundary>
             }
           />
         </Routes>

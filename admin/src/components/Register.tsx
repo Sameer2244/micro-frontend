@@ -27,8 +27,8 @@ export default function Login({ className }: Readonly<{ className?: string }>) {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (errors.username || errors.password) return;
-    const registerError = users.some((user: any) => {
-      return user.name === form.username;
+    const registerError = users.some((user: unknown) => {
+      return (user as { name: string }).name === form.username;
     });
     if (registerError) {
       setErrors({

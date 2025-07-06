@@ -12,6 +12,7 @@ export default defineConfig({
       name: "host-app",
       remotes: {
         admin: "http://localhost:4174/assets/adminEntry.js",
+        article: "http://localhost:4175/assets/ArticleEntry.js",
       },
       filename: "hostEntry.js",
       exposes: {
