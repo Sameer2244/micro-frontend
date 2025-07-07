@@ -11,3 +11,7 @@ declare module "admin/Register" {
 declare module "article/ArticleForm" {
   export default function ArticleForm({ children }: any): any;
 }
+
+declare module "comments-likes/LikesComments" {
+  export default function LikesComments({ children }: any): any;
+}

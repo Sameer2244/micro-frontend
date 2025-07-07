@@ -11,4 +11,6 @@ export interface GlobalContextType {
   removeArticle: (userId: string, articleId: string) => void;
   loginUserHandler: (user: string) => void;
   logoutUserHandler: () => void;
+  addComment: (articleId: string, comment: string, addedby: string) => void;
+  toggleArticleLike: (userId: string, articleId: string) => void;
 }

@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { useGlobalState } from "./context/GlobalContext";
 import LoggedInWrapper from "./components/LoggedInWrapper";
+import ErrorBoundary from "./components/ErrorBoundary";
+import React from "react";
+const LikesComments = React.lazy(() => {
+  return import("comments-likes/LikesComments");
+});
 
 function App() {
   const { publicArticles } = useGlobalState();
@@ -10,7 +15,14 @@ function App() {
         LoggedInComponent={
           <>
             <h1>Logged in</h1>
-            <Link to="/article-form">add article</Link>
+            <Link to="/add-article">add article</Link>
+            <button
+              onClick={() => {
+                localStorage.removeItem("loggedIn");
+              }}
+            >
+              logout
+            </button>
           </>
         }
       >
@@ -23,6 +35,11 @@ function App() {
               <div key={article.id}>
                 <h1 className="text-2xl font-medium">{article.title}</h1>
                 <p className="text-base">{article.content}</p>
+
+                {/* comments and likes from other app */}
+                <ErrorBoundary>
+                  <LikesComments article={article} />
+                </ErrorBoundary>
               </div>
             );
           })

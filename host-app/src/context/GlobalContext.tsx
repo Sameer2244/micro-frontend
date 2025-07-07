@@ -46,27 +46,47 @@ export default function GlobalContextWrapper({
   };
 
   const addArticle = (userId: string, article: ArticleType): void => {
-    setUsers((prevData) => {
-      return prevData.map((user) => {
-        if (user.id === userId) {
-          return { ...user, articles: user.articles.concat(article) };
+    setPublicArticles((prevData) => {
+      return prevData.map((article) => article).concat(article);
+    });
+  };
+  const removeArticle = (articleId: string): void => {
+    setPublicArticles((prevData) => {
+      return prevData.filter((article) => article.id !== articleId);
+    });
+  };
+  const addComment = (
+    articleId: string,
+    comment: string,
+    addedby: string
+  ): void => {
+    setPublicArticles((prevData) => {
+      return prevData.map((article) => {
+        if (article.id === articleId) {
+          return {
+            ...article,
+            comments: [
+              ...article.comments,
+              { id: Date.now().toString(), comment, addedby: addedby },
+            ],
+          };
         }
-        return user;
+        return article;
       });
     });
   };
-  const removeArticle = (userId: string, articleId: string): void => {
-    setUsers((prevData) => {
-      return prevData.map((user) => {
-        if (user.id === userId) {
+  const toggleArticleLike = (userId: string, articleId: string) => {
+    setPublicArticles((prevData) => {
+      return prevData.map((article) => {
+        if (article.id === articleId) {
           return {
-            ...user,
-            articles: user.articles.filter(
-              (article) => article.id !== articleId
-            ),
+            ...article,
+            likes: article.likes.includes(userId)
+              ? article.likes.filter((id) => id !== userId)
+              : article.likes.concat(userId),
           };
         }
-        return user;
+        return article;
       });
     });
   };
@@ -91,6 +111,8 @@ export default function GlobalContextWrapper({
       removeArticle,
       loginUserHandler,
       logoutUserHandler,
+      addComment,
+      toggleArticleLike,
     };
   }, [
     users,
@@ -99,6 +121,8 @@ export default function GlobalContextWrapper({
     addPublicArticle,
     publicArticles,
     removeArticle,
+    addComment,
+    toggleArticleLike,
   ]);
   return (
     <GlobalContext.Provider value={contextValue}>

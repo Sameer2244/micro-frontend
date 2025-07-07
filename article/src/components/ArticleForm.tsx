@@ -2,7 +2,7 @@ import { useGlobalState } from "host-app/GlobalContext";
 import { useState } from "react";
 
 export default function ArticleForm() {
-  const { addArticle } = useGlobalState();
+  const { users, addArticle } = useGlobalState();
   const [articles, setArticles] = useState({
     title: "",
     content: "",
@@ -18,10 +18,16 @@ export default function ArticleForm() {
       return;
     }
     if (articles.title.length > 0 && articles.content.length > 0) {
+      const user = users.find(
+        (user: any) => user.id === localStorage.getItem("loggedIn")
+      );
       addArticle(localStorage.getItem("loggedIn"), {
-        title: "",
-        content: "",
+        title: articles.title,
+        content: articles.content,
         id: Date.now().toString(),
+        likes: [],
+        comments: [],
+        addedby: user.name,
       });
       setArticles({
         title: "",

@@ -13,6 +13,7 @@ export default defineConfig({
       remotes: {
         admin: "http://localhost:4174/assets/adminEntry.js",
         article: "http://localhost:4175/assets/ArticleEntry.js",
+        "comments-likes": "http://localhost:4176/assets/CommentSectionEntry.js",
       },
       filename: "hostEntry.js",
       exposes: {

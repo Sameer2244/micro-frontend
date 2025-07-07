@@ -11,7 +11,10 @@ const Register = lazy(() => {
 });
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary.tsx";
-import ArticleForm from "article/ArticleForm";
+const ArticleForm = lazy(() => {
+  return import("article/ArticleForm");
+});
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -44,7 +47,9 @@ createRoot(document.getElementById("root")!).render(
             element={
               <ErrorBoundary>
                 <Suspense fallback={<h1>Loading...</h1>}>
-                  <ArticleForm />
+                  <ProtectedRoute>
+                    <ArticleForm />
+                  </ProtectedRoute>
                 </Suspense>
               </ErrorBoundary>
             }
