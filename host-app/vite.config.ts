@@ -21,7 +21,7 @@ export default defineConfig({
         "./Link": "./src/components/LinkComponent.tsx",
         "./useNavigate": "./src/utilities/customNavigate.ts",
       },
-      shared: ["react", "react-dom"],
+      shared: ["react", "react-dom", "tailwindcss"],
     }),
   ],
   build: {

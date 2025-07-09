@@ -14,11 +14,12 @@ export default function LikesComments({
   const { addComment, toggleArticleLike, users } = useGlobalState();
   const [commentinput, setCommentinput] = useState("");
   return (
-    <div>
+    <div className="py-5 px-4 border border-[#D9A299] my-5 rounded-2xl">
       <p>
         Article Added by <span>{article.addedby}</span>
       </p>
       <button
+        className="bg-[#FAF7F3] inline-block py-2 px-4 rounded-[4px]"
         onClick={() => {
           if (localStorage.getItem("loggedIn")) {
             toggleArticleLike(localStorage.getItem("loggedIn"), article.id);
@@ -46,6 +47,7 @@ export default function LikesComments({
           }}
         >
           <input
+            className="p-2 border border-[#D9A299] bg-white rounded-[.25rem]"
             type="text"
             value={commentinput}
             onChange={(e) => setCommentinput(e.target.value)}
@@ -55,7 +57,7 @@ export default function LikesComments({
         </form>
         {article.comments.map((comment) => {
           return (
-            <div key={comment.id}>
+            <div className="p-2 my-1" key={comment.id}>
               <span>{comment.addedby}: </span>
               {comment.comment}
             </div>

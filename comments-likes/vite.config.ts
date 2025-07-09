@@ -12,10 +12,18 @@ export default defineConfig({
       exposes: {
         "./LikesComments": "./src/components/LikesComments.tsx",
       },
-      shared: ["react", "react-dom"],
+      shared: ["react", "react-dom", "tailwindcss"],
       remotes: {
         "host-app": "http://localhost:4173/assets/hostEntry.js",
       },
     }),
   ],
+  build: {
+    target: "esnext",
+    rollupOptions: {
+      output: {
+        assetFileNames: "assets/tailwind.css",
+      },
+    },
+  },
 });

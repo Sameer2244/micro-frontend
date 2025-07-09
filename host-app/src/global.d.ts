@@ -15,3 +15,5 @@ declare module "article/ArticleForm" {
 declare module "comments-likes/LikesComments" {
   export default function LikesComments({ children }: any): any;
 }
+
+declare module "css-file/style-DK-D2m7x.css";

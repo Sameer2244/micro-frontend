@@ -1,4 +1,5 @@
 import { useGlobalState } from "host-app/GlobalContext";
+import Link from "host-app/Link";
 import { useState } from "react";
 
 export default function ArticleForm() {
@@ -44,26 +45,38 @@ export default function ArticleForm() {
   return (
     <form
       onSubmit={handleAddArticle}
-      style={{
-        display: "flex",
-        gap: "1rem",
-        flexDirection: "column",
-        width: "40rem",
-      }}
+      className="flex gap-10 py-10 px-5 flex-col bg-[#E5E0D8] items-stretch w-[30rem] m-auto border border-[#D9A299] rounded-2xl text-center"
     >
+      <h2 className="text-2xl">Create an article</h2>
       <input
         value={articles.title}
-        onChange={(e) => setArticles({ ...articles, title: e.target.value })}
+        className="p-2 border border-[#D9A299] bg-white rounded-[.25rem]"
+        onChange={(e) =>
+          setArticles({ ...articles, title: e.target.value, error: "" })
+        }
         type="text"
         placeholder="Enter article title"
       />
       <textarea
         value={articles.content}
-        onChange={(e) => setArticles({ ...articles, content: e.target.value })}
+        className="p-2 border border-[#D9A299] bg-white rounded-[.25rem] min-h-[10rem]"
+        onChange={(e) =>
+          setArticles({ ...articles, content: e.target.value, error: "" })
+        }
         placeholder="Enter article content"
       />
-      <button type="submit">Add article</button>
-      {articles.error}
+      <button
+        type="submit"
+        className="bg-[#FAF7F3] inline-block mx-4 py-2 px-4 rounded-[4px]"
+      >
+        Add article
+      </button>
+      <p className="text-[red]">{articles.error}</p>
+      <Link>
+        <span className="bg-[#FAF7F3] inline-block mx-4 py-2 px-4 rounded-[4px]">
+          To Dashboard
+        </span>
+      </Link>
     </form>
   );
 }

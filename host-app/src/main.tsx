@@ -27,7 +27,7 @@ createRoot(document.getElementById("root")!).render(
             element={
               <ErrorBoundary>
                 <Suspense fallback={<h1>Loading...</h1>}>
-                  <Login className="flex flex-col border my-5 gap-5" />
+                  <Login />
                 </Suspense>
               </ErrorBoundary>
             }
